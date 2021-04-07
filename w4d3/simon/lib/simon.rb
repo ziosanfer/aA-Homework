@@ -26,11 +26,8 @@ class Simon
     end
     sleep(3)
     system("clear")
-    sleep(1)
     show_sequence
     @sequence_length += 1
-    sleep(2)
-    system("clear")
     if require_sequence
       @game_over = false
       round_success_message
@@ -46,12 +43,17 @@ class Simon
     sleep(2)
     system("clear")
     add_random_color
-    @seq.each {|color| puts color}
+    @seq.each do |color| 
+      puts color
+      sleep(0.75)
+      system("clear")
+      sleep(0.25)
+    end
   end
 
   def require_sequence
-    puts "Please enter the sequence of colors"
-    @seq.all? {|color| color.downcase == gets.chomp.downcase}
+    puts "Please enter the sequence of colors. Accepts the first letter of the color name."
+    @seq.all? {|color| color[0].downcase == gets.chomp[0].downcase}
   end
 
   def add_random_color
